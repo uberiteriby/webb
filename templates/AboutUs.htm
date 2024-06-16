@@ -1,0 +1,49 @@
+{% extends "template.htm" %}
+<!-- Наследование основного шаблона "template.htm" -->
+
+{% block content %}
+<!-- Определение блока content -->
+<div class="container-fluid justify-content-center text-center mt-5 d-flex">
+  <div class="jumbotron">
+        <h1 class="display-3">Ресторан "Гурман"</h1>
+        <p></p>
+      <img src="/static/gurman.jpg" width="128" style="">
+      <h4>О нас</h4>
+      <p>Ресторан «Гурман» — это уютное место, где можно насладиться изысканной кухней и приятной атмосферой. В меню представлены блюда разных кухонь мира, приготовленные из свежих продуктов высокого качества. Шеф-повар ресторана уделяет особое внимание сочетанию вкусов и подаче блюд, чтобы каждый гость получил максимальное удовольствие от еды. Интерьер ресторана выполнен в современном стиле с элементами классики, что создаёт особую атмосферу комфорта и уюта. Здесь можно провести романтический вечер вдвоём, отметить важное событие в кругу близких людей или просто поужинать после рабочего дня.</p>
+      <h4>Наши акции:</h4>
+      <div class="row justify-content-center">
+        <div class="col-sm-9 scrollable-cards">
+            <div class="row gy-3">
+                <div class="col-sm-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-left fw-bold">"Двойное удовольствие"</h5>
+                            <p class="card-text fw-light">Акция дня</p>
+                            <p class="card-text fst-italic">"Двойное удовольствие": при покупке двух блюд из основного меню, третье блюдо - на выбор, предоставляется бесплатно.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-left fw-bold">"Ланч по выгодной цене"</h5>
+                            <p class="card-text fw-light">Акция месяца</p>
+                            <p class="card-text fst-italic"> "Ланч по выгодной цене": специальное предложение на обед - скидка 20% на любое блюдо из ланч-меню при заказе в определенное время (например, с 12:00 до 15:00).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-left fw-bold">"Шампанское в подарок"</h5>
+                            <p class="card-text fw-light">Акция недели</p>
+                            <p class="card-text fst-italic">"Шампанское в подарок": при заказе для двоих из специального меню для пары, бутылка шампанского предоставляется в подарок.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

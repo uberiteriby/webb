@@ -1,0 +1,40 @@
+{% extends "template.htm" %}
+
+{% block content %}
+<div class="container-fluid  mt-5">
+    <h2 class="text-center">Категории блюд </h2>
+    <div class="row justify-content-center text-center">
+    {% for categ in categories %}
+    <div class="col-sm-1">
+            <div class="list-group list-group-flush text-center">
+                <a href="{{url_for('dish_by_category', category_id=categ.id)}}" class="list-group-item bg-success rounded-pill text-light list-group-item-action" aria-current="true">{{ categ.name }}</a>
+            </div><!-- Лист группа -->
+    </div>
+    {% endfor %}
+</div>
+    <div class="container-fluid mt-5">
+    <h2 class="text-center  mb-4">Всё меню</h2>
+    <div class="row justify-content-center">
+        <div class="col-sm-9 scrollable-cards">
+            <div class="row gy-4">
+                {% for prod in product %}
+                <div class="col-sm-3">
+                    <div class="card h-100">
+                    <a href='{{url_for("dish_by_id", id=prod.id)}}'>
+                            <img src={{url_for("static",filename = prod.photo)}} alt="" class="card-img-top">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-left fw-bold">{{prod.name}}</h5>
+                            <p class="card-text fw-light">{{prod.cost}}</p>
+                            <p class="card-text fst-italic">Состав: {{prod.sostav}}</p>
+                            <p class="card-text fst-italic">{{prod.weight}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

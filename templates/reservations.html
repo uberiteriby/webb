@@ -1,0 +1,22 @@
+{% extends "template.htm" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Reservations</h1>
+        <div class="row">
+            {% for reservation in reservations %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reservation ID: {{ reservation.id }}</h5>
+                        <p class="card-text">Name: {{ reservation.FIO }}</p>
+                        <p class="card-text">Phone: {{ reservation.phone }}</p>
+                        <p class="card-text">Guests Count: {{ reservation.guests_count }}</p>
+                        <p class="card-text">Datetime: {{ reservation.datetime }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

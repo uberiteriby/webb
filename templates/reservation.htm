@@ -1,0 +1,101 @@
+{% extends "template.htm" %}
+{% block title %}Бронирование столика{% endblock %}
+{% block content %}
+
+<div class="container pt-5">
+  <div class="row justify-content-center text-center">
+    <div class="col-md-8">
+      <h1 class="text-center">Бронирование столика</h1>
+
+      <form id="reservationForm" method="post" action="/reservation/">
+        <div class="form-group">
+          <label for="fio">ФИО:</label>
+          <input type="text" class="form-control mt-2" id="fio" name="fio" placeholder="Введите ФИО" required>
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="phone">Телефон:</label>
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Введите номер телефона" required pattern="\d{10,15}" title="Введите корректный номер телефона">
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="guests_count">Количество гостей:</label>
+          <input type="number" class="form-control" id="guests_count" name="guests_count" min="1" value="1" required>
+        </div>
+
+              <div class="form-group mt-2">
+        <label for="datetime">Дата и время:</label>
+        <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+      </div>
+
+        <div class="form-group form-check mt-2">
+          <input type="checkbox" class="form-check-input" id="personal_data" name="personal_data" required>
+          <label class="form-check-label" for="personal_data">Согласие на обработку персональных данных</label>
+        </div>
+
+        <div class="form-group form-check mt-2">
+          <input type="checkbox" class="form-check-input" id="privacy_policy" name="privacy_policy" required>
+          <label class="form-check-label" for="privacy_policy">Согласие с политикой конфиденциальности</label>
+        </div>
+
+        <div class="form-group text-center mt-2">
+          <button type="submit" class="btn btn-success">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+  $(function() {
+    $("#datetime").datepicker({
+      dateFormat: "yy-mm-ddTHH:MM",
+      beforeShowDay: function(date) {
+        var dateStr = $.datepicker.formatDate('yy-mm-dd', date);
+        var eventDays = {{ event_days|safe }};
+        if (eventDays[dateStr] === 'booked') {
+          return [true, 'booked', 'День полностью забронирован'];
+        } else if (eventDays[dateStr] === 'available') {
+          return [true, 'available', 'Есть свободное время'];
+        } else {
+          return [true, '', ''];
+        }
+      }
+    });
+  });
+
+  $('#reservationForm').on('submit', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize(),
+      success: function(response) {
+        alert(response.message);
+        if (response.status === 'success') {
+          $('#reservationForm')[0].reset();
+        }
+      },
+      error: function(response) {
+        alert('Произошла ошибка при бронировании. Пожалуйста, попробуйте снова.');
+      }
+    });
+  });
+</script>
+
+<style>
+  .booked a.ui-state-default {
+    background-color: red !important;
+    color: white !important;
+  }
+  .available a.ui-state-default {
+    background-color: green !important;
+    color: white !important;
+  }
+</style>
+
+{% endblock %}

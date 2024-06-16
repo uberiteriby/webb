@@ -1,0 +1,62 @@
+{% extends "template.htm" %}
+<!-- Наследование основного шаблона "template.htm" -->
+
+{% block title %}Вход{% endblock %}
+<!-- Заголовок страницы -->
+
+{% block content %}
+<!-- Определение блока content -->
+
+<div class="container pt-5">
+  <!-- Контейнер с отступом сверху -->
+  <div class="row justify-content-center text-center">
+    <!-- Строка с выравниванием по центру и текстом по центру -->
+    <div class="col-md-8">
+      <!-- Колонка с шириной 8 -->
+      <h1 class="text-center">
+        Авторизация
+      </h1>
+      <!-- Форма для входа -->
+      <form method="post">
+        <!-- Метод отправки POST -->
+        <div class="form-group">
+          <!-- Группа формы -->
+          <label for="name">Имя Администратора:</label>
+          <!-- Метка для поля ввода имени пользователя -->
+          <input
+            type="text"
+            class="form-control mt-2"
+            id="name"
+            name="name"
+            placeholder="Введите имя пользователя"
+          />
+        </div>
+        <!-- Закрытие группы формы -->
+
+        <div class="form-group mt-2">
+          <!-- Группа формы с отступом -->
+          <label for="password">Пароль:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Введите пароль"
+          />
+        </div>
+        <!-- Закрытие группы формы с отступом -->
+
+        <div class="form-group text-center mt-2">
+          <!-- Группа формы с выравниванием текста по центру -->
+          <button type="submit" class="btn btn-success">Войти</button>
+        </div>
+      </form>
+      <!-- Закрытие формы -->
+    </div>
+    <!-- Закрытие колонки -->
+  </div>
+  <!-- Закрытие строки -->
+</div>
+<!-- Закрытие контейнера -->
+{% endblock %}
+<!-- Закрытие блока content -->
